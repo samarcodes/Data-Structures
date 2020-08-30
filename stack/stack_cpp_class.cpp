@@ -2,28 +2,40 @@
 
 using namespace std;
 
-struct Node {
-	int data;
-	struct Node *next;
+template<class T>
+class Node {
+public:
+	T data;
+	Node *next;
 };
 
+template<class T>
 class stack {
-	Node *head;
+	Node<T> *head;
 	int size;
 public:
-	stack(): head(NULL), size(0)
+	stack(): head(NULL), size(0) //parameterized ctor
 	{
 	}
-	void push(int value);
+	void push(T value);
 	void pop();
-	int top();
+	T top();
 	bool isEmpty();
-	bool isFULL();
 	void show();
+	~stack()  //destructor
+	{
+		Node<T> *temp = head;
+		while (temp) {
+			head = head->next;
+			delete temp;
+			temp = head;
+		}
+	}
 };
 
-void stack:: push(int value) {
-	Node *new_node = new Node;
+template<class T>
+void stack<T>:: push(T value) {
+	Node<T> *new_node = new Node<T>;
 	new_node->data = value;
 	new_node->next = NULL;
 	if (!head) {
@@ -36,23 +48,26 @@ void stack:: push(int value) {
 	size += 1;
 }
 
-void stack:: pop() {
+template <class T>
+void stack<T>:: pop() {
 	if (head) {
-		Node *temp = head;
+		Node<T> *temp = head;
 		head = head->next;
 		delete temp;
 	}
 }
 
-int stack:: top() {
+template <class T>
+T stack<T>:: top() {
 	if (head)
 		return head->data;
 	else
 		return -1;
 }
 
-void stack:: show() {
-	Node *temp = head;
+template <class T>
+void stack<T>:: show() {
+	Node<T> *temp = head;
 	while (temp) {
 		cout << temp->data << " ";
 		temp = temp->next;
@@ -61,22 +76,20 @@ void stack:: show() {
 	cout << "size : " << size << endl;
 }
 
-bool stack:: isEmpty() {
+template <class T>
+bool stack<T>:: isEmpty() {
 	bool ans = head ? false : true;
 	return ans;
 }
 
-bool stack:: isFULL() {
-
-}
-
 int main() {
-	stack st;
-	st.push(10);
-	st.push(20);
-	st.push(30);
-	st.push(40);
-	st.push(50);
+	stack<char> st;
+	st.push('a');
+	st.push('b');
+	st.push('c');
+	st.push('d');
+	st.push('e');
+	st.push('f');
 
 	st.show();
 
