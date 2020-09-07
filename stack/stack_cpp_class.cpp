@@ -12,14 +12,15 @@ public:
 template<class T>
 class stack {
 	Node<T> *head;
-	int size;
+	int _size;
 public:
-	stack(): head(NULL), size(0) //parameterized ctor
+	stack(): head(NULL), _size(0) //parameterized ctor
 	{
 	}
 	void push(T value);
 	void pop();
 	T top();
+	int size();
 	bool isEmpty();
 	void show();
 	~stack()  //destructor
@@ -45,7 +46,7 @@ void stack<T>:: push(T value) {
 		new_node->next = head;
 		head = new_node;
 	}
-	size += 1;
+	_size += 1;
 }
 
 template <class T>
@@ -62,7 +63,12 @@ T stack<T>:: top() {
 	if (head)
 		return head->data;
 	else
-		return -1;
+		return 0;
+}
+
+template <class T>
+int stack<T>:: size() {
+	cout << _size << endl;
 }
 
 template <class T>
@@ -73,7 +79,6 @@ void stack<T>:: show() {
 		temp = temp->next;
 	}
 	cout << endl;
-	cout << "size : " << size << endl;
 }
 
 template <class T>
@@ -92,6 +97,7 @@ int main() {
 	st.push('f');
 
 	st.show();
+	st.size();
 
 	return 0;
 }
