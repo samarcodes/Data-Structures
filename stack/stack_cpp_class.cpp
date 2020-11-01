@@ -14,7 +14,7 @@ class stack {
 	Node<T> *head;
 	int _size;
 public:
-	stack(): head(NULL), _size(0) //parameterized ctor
+	stack(): head(NULL), _size(0) //default ctor
 	{
 	}
 	void push(T value);
