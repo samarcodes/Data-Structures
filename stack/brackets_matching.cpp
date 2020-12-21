@@ -7,7 +7,7 @@ using namespace std;
 bool isBalanced(string s) {
 	int len = s.length();
 	stack <char> st;
-	cout << len << endl;
+
 	//base case
 	if (s[0] == ')' || s[0] == '}' || s[0] == ']') {
 		return false;
